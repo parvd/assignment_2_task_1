@@ -14,6 +14,10 @@ def evaluate_expression(expression):
             right = stack.pop()
             left = stack.pop()
             stack.append(left - right)
+        elif token == '*':
+            right = stack.pop()
+            left = stack.pop()
+            stack.append(left * right)
     return stack.pop()
 
 class TestExpressionEvaluation(unittest.TestCase):
