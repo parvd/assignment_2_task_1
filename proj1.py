@@ -1,7 +1,17 @@
 import unittest
 
 def evaluate_expression(expression):
-    print("false")
+    stack = []
+    tokens = expression.split()
+    for token in tokens:
+        if token.isdigit():
+            stack.append(int(token))
+        elif token == '+':
+            right = stack.pop()
+            left = stack.pop()
+            stack.append(left + right)
+    return stack.pop()
+
 class TestExpressionEvaluation(unittest.TestCase):
     def test_addition(self):
         self.assertEqual(evaluate_expression('2 3 +'), 5)
@@ -20,5 +30,3 @@ class TestExpressionEvaluation(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
